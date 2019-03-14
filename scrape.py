@@ -21,12 +21,14 @@ soup = BeautifulSoup(page, 'html.parser')
 
 allTitles = soup.findAll('h2', attrs={'class':'entry-title'})
 
+# get all links in the main webpage
 allTitlesClean = []
 for title in allTitles:
     titleBox = title.encode('utf-8')
     temp = (str.split(titleBox)[2])
     allTitlesClean.append(temp[6:-1])
 
+# for each link goto it
 for title in allTitlesClean:
     req2 = urllib2.Request(title, headers=hdr)
     page2 = urllib2.urlopen(req2)
@@ -37,11 +39,12 @@ for title in allTitlesClean:
     # format to text file
     # add delay after each query
 
-title_box = soup.find('h2', attrs={'class':'entry-title'}).encode('utf-8')
-title = str.split(title_box)[2]
-title = title[6:-1]
-
-
-page = urllib2.urlopen(urllib2.Request(title, header=hdr))
+# open up the next page (2, 3, 4..)
+# title_box = soup.find('h2', attrs={'class':'entry-title'}).encode('utf-8')
+# title = str.split(title_box)[2]
+# title = title[6:-1]
+#
+#
+# page = urllib2.urlopen(urllib2.Request(title, header=hdr))
 
 
